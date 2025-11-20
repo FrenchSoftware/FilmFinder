@@ -72,13 +72,19 @@ export function ChatHeader({
                   </a>
                 </Button>
                 <Button
+                  asChild
                   variant="outline"
                   size="sm"
-                  onClick={() => setIsDiscordOpen(true)}
                   className="flex items-center gap-2 bg-white dark:bg-transparent"
                 >
-                  <DiscordIcon />
-                  <span className="hidden sm:inline">Join Community</span>
+                  <a
+                    href="https://discord.com/invite/HXkpCG7DEH"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <DiscordIcon />
+                    <span className="hidden sm:inline">Join Community</span>
+                  </a>
                 </Button>
               </div>
             </div>

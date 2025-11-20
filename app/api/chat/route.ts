@@ -50,11 +50,16 @@ const recommendMovieTool: Tool = {
   inputSchema: recommendMovieSchema,
   outputSchema: movieOutputSchema,
   execute: async (input: z.infer<typeof recommendMovieSchema>) => {
+    console.log(`[RecommendMovie] Executing for: ${input.title}${input.year ? ` (${input.year})` : ''}`);
     try {
       const omdb = getOMDBClient();
-      return await omdb.findMovie(input.title, input.year);
+      const result = await omdb.findMovie(input.title, input.year);
+      console.log(`[RecommendMovie] Success: ${result.title}`);
+      return result;
     } catch (error) {
       console.error("[RecommendMovie] Error:", error);
+      console.error("[RecommendMovie] Input was:", JSON.stringify(input));
+      console.error("[RecommendMovie] Error details:", error instanceof Error ? error.message : String(error));
       throw error;
     }
   },

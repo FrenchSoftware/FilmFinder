@@ -53,16 +53,28 @@ class OMDBClient {
 
     console.log(`[OMDB] Searching for: ${title}${year ? ` (${year})` : ""}`);
 
-    const response = await fetch(`${this.baseUrl}?${params.toString()}`);
-    const data: OMDBMovie = await response.json();
+    try {
+      const response = await fetch(`${this.baseUrl}?${params.toString()}`);
 
-    if (data.Response === "True") {
-      console.log(`[OMDB] Found: ${data.Title} (${data.Year}) - ${data.imdbID}`);
-      return data;
+      if (!response.ok) {
+        console.error(`[OMDB] HTTP Error: ${response.status} ${response.statusText}`);
+        return null;
+      }
+
+      const data: OMDBMovie = await response.json();
+
+      if (data.Response === "True") {
+        console.log(`[OMDB] Found: ${data.Title} (${data.Year}) - ${data.imdbID}`);
+        return data;
+      }
+
+      console.log(`[OMDB] Not found: ${data.Error || 'Unknown error'}`);
+      console.log(`[OMDB] Full response:`, JSON.stringify(data));
+      return null;
+    } catch (error) {
+      console.error(`[OMDB] Fetch error:`, error);
+      return null;
     }
-
-    console.log(`[OMDB] Not found: ${data.Error}`);
-    return null;
   }
 
   /**
@@ -81,18 +93,31 @@ class OMDBClient {
 
     console.log(`[OMDB] Fallback search for: ${title}`);
 
-    const response = await fetch(`${this.baseUrl}?${params.toString()}`);
-    const data: OMDBSearchResult = await response.json();
+    try {
+      const response = await fetch(`${this.baseUrl}?${params.toString()}`);
 
-    if (data.Response === "True" && data.Search && data.Search.length > 0) {
-      const firstResult = data.Search[0];
-      console.log(`[OMDB] Found via search: ${firstResult.Title} (${firstResult.Year})`);
+      if (!response.ok) {
+        console.error(`[OMDB] HTTP Error in search: ${response.status} ${response.statusText}`);
+        return null;
+      }
 
-      // Fetch full details
-      return await this.getMovieById(firstResult.imdbID);
+      const data: OMDBSearchResult = await response.json();
+
+      if (data.Response === "True" && data.Search && data.Search.length > 0) {
+        const firstResult = data.Search[0];
+        console.log(`[OMDB] Found via search: ${firstResult.Title} (${firstResult.Year})`);
+
+        // Fetch full details
+        return await this.getMovieById(firstResult.imdbID);
+      }
+
+      console.log(`[OMDB] Search failed: ${data.Error || 'No results'}`);
+      console.log(`[OMDB] Search response:`, JSON.stringify(data));
+      return null;
+    } catch (error) {
+      console.error(`[OMDB] Search fetch error:`, error);
+      return null;
     }
-
-    return null;
   }
 
   /**
@@ -129,6 +154,8 @@ class OMDBClient {
    * Find a movie by title, trying exact match first, then fallback search
    */
   async findMovie(title: string, year?: number): Promise<Movie> {
+    console.log(`[OMDB] findMovie called with: title="${title}", year=${year}`);
+
     // Try exact title match first
     let movieData = await this.searchByTitle(title, year);
 
@@ -138,9 +165,13 @@ class OMDBClient {
     }
 
     if (!movieData) {
-      throw new Error(`Could not find movie: ${title}`);
+      const errorMsg = `Could not find movie: ${title}${year ? ` (${year})` : ''}`;
+      console.error(`[OMDB] ${errorMsg}`);
+      console.error(`[OMDB] API Key present: ${!!this.apiKey}, Length: ${this.apiKey?.length}`);
+      throw new Error(errorMsg);
     }
 
+    console.log(`[OMDB] Successfully transformed movie: ${movieData.Title}`);
     return this.transformMovie(movieData);
   }
 }
