@@ -94,6 +94,16 @@ export function ChatHeader({
 
       <Dialog open={isDiscordOpen} onOpenChange={handleClose}>
         <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Join the community</DialogTitle>
+            <DialogDescription asChild>
+              <div>
+                <p>
+                  Connect with other movie enthusiasts, share recommendations, and discuss films.
+                </p>
+              </div>
+            </DialogDescription>
+          </DialogHeader>
           <div className="flex flex-col gap-3 pt-4">
             <Button asChild className="w-full" size="sm">
               <a
