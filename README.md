@@ -4,6 +4,10 @@ Stop scrolling through Netflix. Ask an AI and get actual movie cards with poster
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/HXkpCG7DEH)
 
+## Demo
+
+[![Demo Video](https://img.youtube.com/vi/Iw-b91pZXZM/0.jpg)](https://www.youtube.com/watch?v=Iw-b91pZXZM)
+
 ## What this is
 
 A quick experiment with Vercel AI SDK's generative UI. Ask for a movie, get a card instead of text. Has posters, ratings, genres, IMDb links. That's about it.
