@@ -182,7 +182,12 @@ class OMDBClient {
 export function getOMDBClient(): OMDBClient {
   const apiKey = process.env.OMDB_API_KEY;
 
+  console.log(`[OMDB] Environment check - API key present: ${!!apiKey}, Length: ${apiKey?.length || 0}`);
+  console.log(`[OMDB] All env vars:`, Object.keys(process.env).filter(k => k.includes('OMDB')));
+
   if (!apiKey) {
+    console.error("[OMDB] CRITICAL: OMDB_API_KEY environment variable is not set!");
+    console.error("[OMDB] Available env vars:", Object.keys(process.env).join(', '));
     throw new Error("OMDB_API_KEY environment variable is not set");
   }
 

@@ -3,7 +3,7 @@ import { streamText, convertToModelMessages, Tool } from "ai";
 import { z } from "zod";
 import { getOMDBClient } from "@/lib/omdb";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 
 // Schema for movie recommendation tool input
 const recommendMovieSchema = z.object({
