@@ -2,11 +2,11 @@
 
 Stop scrolling through Netflix. Ask an AI and get actual movie cards with posters, ratings, and IMDb links. Built with Vercel AI SDK.
 
-[![Discord](https://img.shields.io/discord/YOUR_DISCORD_ID?color=5865F2&label=Discord&logo=discord&logoColor=white)](https://discord.gg/HXkpCG7DEH)
+[![Discord](https://img.shields.io/badge/Discord-Join%20Server-5865F2?logo=discord&logoColor=white)](https://discord.com/invite/HXkpCG7DEH)
 
-## Why this exists
+## What this is
 
-Because getting movie recommendations shouldn't mean reading paragraphs of text. You ask for a movie, you get a card with everything you need: poster, rating, genres, and a link to IMDb. Click the poster to see it full-screen. That's it.
+A quick experiment with Vercel AI SDK's generative UI. Ask for a movie, get a card instead of text. Has posters, ratings, genres, IMDb links. That's about it.
 
 ## Quick Start
 
@@ -104,7 +104,7 @@ For other platforms: [Next.js deployment docs](https://nextjs.org/docs/app/build
 
 ## Community
 
-[Discord](https://discord.gg/HXkpCG7DEH) - Ask questions, share what you built, hang out.
+[Discord](https://discord.com/invite/HXkpCG7DEH) - Ask questions, share what you built, hang out.
 
 ## Contributing
 

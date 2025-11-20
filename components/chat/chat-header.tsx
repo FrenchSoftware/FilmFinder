@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Star } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -55,15 +56,31 @@ export function ChatHeader({
               </div>
 
               {/* Right side - Actions */}
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setIsDiscordOpen(true)}
-                className="flex items-center gap-2 bg-white dark:bg-transparent"
-              >
-                <DiscordIcon />
-                <span className="hidden sm:inline">Join Community</span>
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button
+                  asChild
+                  size="sm"
+                  className="flex items-center gap-2"
+                >
+                  <a
+                    href="https://github.com/FrenchSoftware/FilmFinder"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Star className="w-4 h-4" />
+                    <span className="hidden sm:inline">Star on GitHub</span>
+                  </a>
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setIsDiscordOpen(true)}
+                  className="flex items-center gap-2 bg-white dark:bg-transparent"
+                >
+                  <DiscordIcon />
+                  <span className="hidden sm:inline">Join Community</span>
+                </Button>
+              </div>
             </div>
           </div>
         </div>
@@ -74,7 +91,7 @@ export function ChatHeader({
           <div className="flex flex-col gap-3 pt-4">
             <Button asChild className="w-full" size="sm">
               <a
-                href="https://discord.gg/HXkpCG7DEH"
+                href="https://discord.com/invite/HXkpCG7DEH"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2"

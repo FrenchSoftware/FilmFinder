@@ -20,11 +20,11 @@ const bebasNeue = Bebas_Neue({
 
 export const metadata: Metadata = {
   title: {
-    default: "FilmFinder - AI Movie Discovery",
+    default: "FilmFinder",
     template: "%s | FilmFinder",
   },
   description:
-    "Find your perfect movie with AI. FilmFinder provides personalized film recommendations with posters, ratings, and IMDb integration. Built with Vercel AI SDK.",
+    "Find your next movie",
   keywords: [
     "movie finder",
     "film finder",
@@ -44,16 +44,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://movie-app.vercel.app",
-    title: "FilmFinder - AI Movie Discovery",
-    description:
-      "Find your perfect movie with AI. Get personalized recommendations with posters, ratings, and IMDb links.",
+    title: "FilmFinder",
+    description: "Find your next movie",
     siteName: "FilmFinder",
   },
   twitter: {
     card: "summary_large_image",
-    title: "FilmFinder - AI Movie Discovery",
-    description:
-      "Find your perfect movie with AI. Personalized recommendations with beautiful, interactive cards.",
+    title: "FilmFinder",
+    description: "Find your next movie",
     creator: "@filmfinder",
   },
   robots: {
