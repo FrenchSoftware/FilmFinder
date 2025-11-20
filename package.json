@@ -60,6 +60,7 @@
     "streamdown": "^1.5.1",
     "tailwind-merge": "^3.4.0",
     "vaul": "^1.1.2",
+    "vercel": "^48.10.5",
     "zod": "^4.1.12"
   },
   "devDependencies": {
