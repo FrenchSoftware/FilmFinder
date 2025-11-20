@@ -4,6 +4,7 @@ import { MovieCard, MovieCardSkeleton } from '@/components/movie-card';
 import { Streamdown } from 'streamdown';
 import { useEffect, useRef } from 'react';
 import confetti from 'canvas-confetti';
+import { Loader2 } from 'lucide-react';
 import type { Movie, MessagePart } from '@/types/movie';
 
 interface ChatMessageProps {
@@ -136,12 +137,23 @@ function AssistantMessage({ parts }: { parts: MessagePart[] }) {
   const movieParts = parts.filter(part => part.type === 'tool-recommendMovie');
   const textParts = parts.filter(part => part.type === 'text');
 
+  // Show loading spinner when assistant is thinking (no parts yet)
+  const isThinking = parts.length === 0 || (movieParts.length === 0 && textParts.length === 0);
+
   return (
     <div className="flex flex-col gap-3 items-start">
       <div className="max-w-full w-full space-y-3">
         <div className="text-sm font-medium opacity-70 text-muted-foreground">
           AI Assistant
         </div>
+
+        {/* Loading state when thinking */}
+        {isThinking && (
+          <div className="flex items-center gap-2 px-4 py-3 rounded-lg bg-muted/50">
+            <Loader2 className="w-4 h-4 animate-spin text-muted-foreground" />
+            <span className="text-sm text-muted-foreground">Finding movies...</span>
+          </div>
+        )}
 
         {/* Movie cards grid */}
         {movieParts.length > 0 && (
